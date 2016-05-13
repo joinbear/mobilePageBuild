@@ -1,2 +1,2 @@
 # mobilePageBuild
-# 手机页面构建工具
+# 手机静态页面编写
