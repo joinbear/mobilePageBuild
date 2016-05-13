@@ -1,0 +1,167 @@
+@import './functions/reset';
+@import './functions/function';
+@import './mixins/mixin';
+@import './iconfont/iconfont';
+
+
+$white      : #fff;
+$colorBlack : #333;
+$bgGray     : #F0F0F0;
+$borderGray : #888;
+$colorGray  : #8A8A8A;
+$colorPink  : #FF0080;
+$colorGreen : #7eb763;
+$colorYellow: #FF5722;
+$blue       : #0000FF;
+
+@mixin box {
+	@include placeholder(background,$white);
+	@include placeholder(border-top,1px solid $borderGray );
+	@include placeholder(border-bottom,1px solid $borderGray );
+}
+
+@mixin icons-tag($color:$colorYellow) {
+	@include placeholder(border,1px solid $color);
+	@include placeholder(color,$color);
+	padding:px2rem(3px) px2rem(5px) 0 px2rem(5px);
+	line-height:px2rem(34px);
+	margin-right: px2rem(10px);
+}
+
+html , body {
+	background:#F0F0F0;
+}
+.flex {
+	display: box;  
+  display: flexbox;  
+  display: flex; 
+	.flex-1 {
+		flex : 1;
+	}
+	.flex-2 {
+		flex : 2;
+	}
+}
+.f12 {
+	@include font-dpr(12px);
+}
+.f14 {
+	@include font-dpr(14px);
+}
+.f16 {
+	@include font-dpr(16px);
+}
+.f18 {
+	@include font-dpr(18px);
+}
+.f20 {
+	@include font-dpr(20px);
+}
+.f34 {
+	@include font-dpr(34px);
+}
+.gray {
+	@include placeholder(color,#4A4A4A);
+}
+.left {
+	@include float(left);
+}
+.right {
+	@include float(right);
+}
+.clearfix {
+	@include clearfix();
+}
+.text-center {
+	@include text-align(center);
+}
+.text-right {
+	@include text-align(right);
+}
+.mt5 {
+	@include placeholder(margin-top,px2rem(10px));
+}
+.mt10 {
+	@include placeholder(margin-top,px2rem(20px));
+}
+.red {
+	@include placeholder(color,$colorPink);
+}
+
+@mixin formTag() {
+	width: 100%;
+	@include placeholder(line-height,px2rem(60px));
+	@include placeholder(padding,px2rem(8px));
+	@extend .f14;
+}
+// form css style
+.form {
+	@include placeholder(padding,px2rem(10px));
+	.form-box {
+		@include placeholder(padding-top,px2rem(20px));
+		@include placeholder(padding-bottom,px2rem(20px));
+		@include placeholder(background,$white);
+		@include placeholder(border-bottom,1px solid $borderGray);
+	}
+	.form-control {
+		@include formTag();
+		border-top: 0;
+		border-left: 0;
+		border-right: 0;
+		display:block;
+		margin:0;
+		@include placeholder(border-bottom,1px solid $borderGray);
+		@include border-radius(px2rem(10px));
+	}
+	.form-date {
+		-webkit-appearance: none;
+		-moz-appearance: none;
+	}
+	select{
+		width: 80%;
+		display:block;
+		@extend .f14;
+	}
+	.form-label {
+		width: 25%;
+		@include text-align(right);
+	}
+	.form-other , .form-label {
+		@include placeholder(line-height,px2rem(60px));
+		@include placeholder(padding,px2rem(8px));
+		@extend .f14;
+	}
+	.form-button {
+		@include formTag();
+		@extend .f16;
+		@include border-radius(px2rem(10px));
+		@include placeholder(background,$colorGreen);
+		@include placeholder(color,$white);
+		@include placeholder(border,1px solid $colorGreen);
+	}
+	.form-button.button-middle {
+		width: 50%;
+	}
+	.form-button.button-small {
+		width: 30%;
+	}
+	.step {
+		@include border-radius(px2rem(10px));
+		@include placeholder(background,$white);
+		padding-bottom: px2rem(30px);
+		display:none;
+	}
+	.step-title {
+		@extend .f18;
+		font-weight: bold;
+		@include placeholder(color,$blue);
+		@include placeholder(padding,px2rem(30px));
+		@include placeholder(border-bottom,1px solid $borderGray);
+	}
+	.step-label {
+		@include placeholder(line-height,px2rem(60px));
+		@include placeholder(border-bottom,1px solid $borderGray);
+		@include placeholder(padding-left,px2rem(60px));
+		@extend .f16;
+	}
+} 

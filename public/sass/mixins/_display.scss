@@ -1,0 +1,5 @@
+@import '../placeholder/placeholder';
+
+@mixin display($type: block) {
+  @include placeholder(display,$type);
+}

@@ -1,0 +1,142 @@
+@import '../placeholder/placeholder';
+// 定义三角形
+// $caret-width：用来设置三角形的大小
+// $border-width：设置边框的大小
+// $direction：设置三角形方向
+// $border-color：设置边框的颜色
+// $background-color：设置背景颜色 
+@mixin caret($position,$caret-width,$border-width,$direction,$border-color,$background-color){
+
+  &:before,
+  &:after {
+    @include placeholder(content,"");
+    @include placeholder(position,$position);
+    @include placeholder(border-style,solid);
+  }
+  &:before{
+    @include placeholder(border-width,$caret-width);
+  }
+  &:after {
+    @include placeholder(border-width,($caret-width - $border-width));
+  }
+  @if $direction == top {
+    &:before {
+      @include placeholder(top,0);
+      @include placeholder(left,0);
+      @include placeholder(border-bottom-color,$border-color);
+    }
+    &:after {
+      @include placeholder(top,$border-width);
+      @include placeholder(left,$border-width);
+      @include placeholder(border-bottom-color,$background-color);
+    }
+    &:before,
+    &:after {
+      @include placeholder(border-left-color,transparent);
+      @include placeholder(border-right-color,transparent);
+    }
+  }
+  @else if $direction == right {
+    &:before {
+      @include placeholder(top,0);
+      @include placeholder(left,0);
+      @include placeholder(border-left-color,$border-color);
+    }
+    &:after {
+      @include placeholder(top,$border-width);
+      @include placeholder(left,0);
+      @include placeholder(border-left-color,$background-color);
+    }
+    &:before,
+    &:after {
+      @include placeholder(border-top-color,transparent);
+      @include placeholder(border-bottom-color,transparent);
+    }
+
+  }
+  @else if $direction == bottom {
+    &:before {
+      @include placeholder(top,0);
+      @include placeholder(left,0);
+      @include placeholder(border-top-color,$border-color);
+    }
+    &:after {
+      @include placeholder(top,0);
+      @include placeholder(left,$border-width);
+      @include placeholder(border-top-color,$background-color);
+    }
+    &:before,
+    &:after {
+      @include placeholder(border-left-color,transparent);
+      @include placeholder(border-right-color,transparent);
+    }
+  } 
+  @else if $direction == left {
+    &:before {
+      @include placeholder(top,0);
+      @include placeholder(left,0);
+      @include placeholder(border-right-color,$border-color);
+    }
+    &:after {
+      @include placeholder(top,$border-width);
+      @include placeholder(left,$border-width);
+      @include placeholder(border-right-color,$background-color);
+    }
+    &:before,
+    &:after {
+      @include placeholder(border-top-color,transparent);
+      @include placeholder(border-bottom-color,transparent);
+    }
+  }
+}
+
+/***demo***
+.tip{
+  width: 150px;
+  height: 50px;
+  background: #000;
+  border-radius:3px;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 20px;
+  
+  .caret-top{
+    top: -10px;
+    left: 10px;
+    @include caret(absolute,10px,1px,top,#000,#000);
+  }
+  .caret-right{
+    top: 10px;
+    right: 0px;
+    @include caret(absolute,10px,1px,right,#000,#000);
+  }
+  .caret-bottom{
+    bottom: 0px;
+    left: 10px;
+    @include caret(absolute,10px,1px,bottom,#000,#000);
+  }
+  .caret-left{
+    left: -10px;
+    top: 10px;
+    @include caret(absolute,10px,1px,left,#000,#000);
+  }
+}
+.tip2 {
+  background-color: transparent;
+  border: 1px solid #000;
+  
+  .caret-top {
+    @include caret(absolute,10px,1px,top,#000,#fff);
+  }
+  .caret-right {
+    @include caret(absolute,10px,1px,right,#000,#fff);
+  }
+  .caret-bottom {
+    @include caret(absolute,10px,1px,bottom,#000,#fff);
+  }
+  .caret-left {
+    @include caret(absolute,10px,1px,left,#000,#fff);
+  }
+}
+*/

@@ -1,0 +1,59 @@
+@charset "utf-8";
+
+// /**
+//  * rem是相对于根元素的一种长度关系，浏览器默认根元素<html>为16px
+//  * 10 ÷ 16 × 100% = 62.5%，font-size:62.5%;1rem=10px;由于google的
+//  * 最小字体12px，造成rem在webkit内核下有bug，因此将根元素字体放大
+//  * 一倍即125%，1rem=20px，在使用中再将值缩小一倍(建议用在html5和移动端)
+//  */
+//手机端字体
+$fontMobile: Tahoma,Arial,Roboto,"Droid Sans","Helvetica Neue","Droid Sans Fallback","Heiti SC",sans-serif;
+//pc端字体
+$fontDefault: Tahoma,Arial,"Helvetica Neue","Hiragino Sans GB",Simsun,sans-serif, Microsoft Yahei,"微软雅黑";
+
+//z-index
+$zIndexHeader:                   940 !default;
+$zIndexFooter:                   900 !default;
+$zIndexOvermask:                 980 !default; // 默认高于header和footer部分
+$zIndexOverlay:                  990 !default; // 默认高于遮罩层
+
+
+// Cool
+$aqua:                           #7fdbff;
+$blue:                           #0074d9;
+$navy:                           #001f3f;
+$teal:                           #39cccc;
+$green:                          #7eb763;
+$olive:                          #3d9970;
+$lime:                           #01ff70;
+
+// Warm
+$yellow:                         #ffdc00;
+$orange:                         #ff851b;
+$red:                            #ff0000;
+$fuchsia:                        #f012be;
+$purple:                         #b10dc9;
+$maroon:                         #85144b;
+
+// gray
+$black:                          black !default;
+$grayDarker:                     #333 !default;
+$grayDark:                       #999 !default;
+$gray:                           #ccc !default;
+$grayLight:                      #f1f1f1 !default;
+$white:                          white !default;
+
+// link
+//-----------------------------------------------------	
+// 如果只有一个值则滑过的值为这个值的darken 5%，如果
+// 有两个值则第二个值为滑过的值
+$linkColor:                      #08c !default;
+
+// scaffolding
+//-----------------------------------------------------	
+$bgColor:                        $grayLight !default;
+$textColor:                      $grayDarker !default;
+$borderColor:                    #dbdbdb !default;
+
+// 变量分别为：是否输出表单的占位符placeholder样式，文本色
+$placeholderColor:               true $gray !default;

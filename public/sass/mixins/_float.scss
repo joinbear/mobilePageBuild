@@ -1,0 +1,5 @@
+@import '../placeholder/placeholder';
+
+@mixin float($type: left) {
+  @include placeholder(float,$type);
+}

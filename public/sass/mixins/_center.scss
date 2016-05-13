@@ -1,0 +1,60 @@
+@import '../placeholder/placeholder';
+
+// center margin
+@mixin center-margin($width: null, $height: null,$position: absolute) {
+  $cent-margin-map:
+    (type:position,value:$position),
+    (type:left,value:0),
+    (type:top,value:0),
+    (type:width,value:$width),
+    (type:height,value:$height),
+    (type:margin-bottom,value:0),
+    (type:margin-right,value:0),
+    (type:margin-top,value:-($height / 2)),
+    (type:margin-left,value:-($width / 2));
+  @each $key in $cent-margin-map{
+    @include placeholder(map-get($key, type),map-get($key, value));
+  }
+}
+
+// center margin
+@mixin center-margin-new($position: absolute) {
+  $cent-margin-map:
+    (type:position,value:$position),
+    (type: left,value:0),
+    (type: top,value:0),
+    (type: right,value:0),
+    (type: bottom,value:0),
+    (type: margin,value:auto);
+  @each $key in $cent-margin-map{
+    @include placeholder(map-get($key, type),map-get($key, value));
+  }
+}
+
+// center translate
+@mixin center-translate($direction: both,$position: absolute) {
+
+  @include placeholder(position,$position);
+  @if $direction == both {
+    @include placeholder(left,0);
+    @include placeholder(top,0);
+    @include placeholder(transform,translate(-50%, 0));
+  }
+  @else if $direction == x {
+    @include placeholder(left,0);
+    @include placeholder(transform,translate(0,-50%));
+  }
+  @else if $direction == y {
+    @include placeholder(top,0);
+    @include placeholder(transform,translate(-50%,-50%));
+  }
+}
+// center block 
+@mixin center-block() {
+  @include placeholder(margin-left,auto);
+  @include placeholder(margin-right,auto);
+  @include placeholder(display,block);
+}
+
+
+

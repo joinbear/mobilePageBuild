@@ -1,0 +1,8 @@
+@import '../placeholder/placeholder';
+
+
+@mixin border-radius($radius) {
+
+  @include placeholder(border-radius,$radius);
+
+}

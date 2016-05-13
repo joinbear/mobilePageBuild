@@ -1,0 +1,46 @@
+{
+  "name": "linker",
+  "version": "0.0.0",
+  "private": true,
+  "main": "app/app.js",
+  "scripts": {
+    "start": "npm run build && supervisor ./bin/www",
+    "dev": "DEBUG=express:* supervisor ./bin/www",
+    "es-start": "supervisor babel-node src/bin/www",
+    "build": "babel src --out-dir app",
+    "sshconfig": "ssh root@linker.ecen.com.cn -R 10000:127.0.0.1:8000"
+  },
+  "dependencies": {
+    "body-parser": "~1.13.2",
+    "co": "^4.6.0",
+    "cookie-parser": "~1.3.5",
+    "debug": "~2.2.0",
+    "express": "~4.13.1",
+    "express-handlebars": "^3.0.0",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-rename": "^1.2.2",
+    "jade": "~1.11.0",
+    "jssha": "^2.0.2",
+    "morgan": "~1.6.1",
+    "multer": "^1.1.0",
+    "raml2html": "^2.4.0",
+    "serve-favicon": "~2.3.0",
+    "superagent": "^1.8.3",
+    "wechat-enterprise": "^0.1.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.6.5",
+    "babel-core": "^6.7.4",
+    "babel-plugin-transform-es2015-destructuring": "^6.6.5",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.7.4",
+    "babel-plugin-transform-es2015-parameters": "^6.7.0",
+    "babel-plugin-transform-es2015-spread": "^6.6.5",
+    "babel-plugin-transform-strict-mode": "^6.6.5",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-iconfont": "^6.0.0",
+    "gulp-iconfont-css": "^2.1.0",
+    "gulp-sass": "^2.2.0"
+  }
+}

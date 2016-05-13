@@ -1,0 +1,137 @@
+@charset "utf-8";
+
+@import "./variables";
+@import "./px2rem";
+@import "./font-drp";
+
+// 修改元素盒子模型
+* {
+    box-sizing: border-box;
+}
+// 1. font for mobile
+// 2. forbid user to select in page
+// 3. Prevent iOS text size adjust after orientation change, without disabling user zoom.
+// 4. set default 62.5% * 2 fix the bug of google whose min font-size is 12px. 
+// when use rem,you should reduce the size to half of you calculate
+html , body {
+    font-family: $fontMobile;// 1
+}
+// 表单placeholder样式
+// 注意不可联合申明，否则无效
+@if nth($placeholderColor, 1) {
+    // Firefox 19+
+    input::-moz-placeholder,
+    textarea::-moz-placeholder {
+        color: nth($placeholderColor, 2);
+    }
+    // Internet Explorer 10+
+    input:-ms-input-placeholder,
+    textarea:-ms-input-placeholder {
+        color: nth($placeholderColor, 2);
+    }
+    // Safari and Chrome
+    input::-webkit-input-placeholder,
+    textarea::-webkit-input-placeholder {
+        color: nth($placeholderColor, 2);
+    }
+}
+// 1. Remove the gray background color from active links in IE 10.
+// 2. Improve readability when focused and also mouse hovered in all browsers.
+a {
+    background: transparent; // 1
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+    &:active {
+        outline: 0; // 2
+    }
+    @if length($linkColor) > 1 {
+        color: nth($linkColor, 1);
+        &:active {
+            color: nth($linkColor, 2);
+        }
+    }
+    @else {
+        color: $linkColor;
+        &:active {
+            color: darken($linkColor, 10%);
+        }
+    }
+}
+input , button ,textarea {
+    &:active {
+        outline: 0 none; // 2
+        color: rgba(255,255,255,.5);
+    }
+    &:focus {
+        outline: 0 none; // 2
+    }
+}
+input,button,textarea {
+    /*透明度设为0,则会禁用此属性*/
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+    -moz-tap-highlight-color:rgba(0,0,0,0);
+    -o-tap-highlight-color:rgba(0,0,0,0);
+    -ms-tap-highlight-color:rgba(0,0,0,0);
+    tap-highlight-color:rgba(0,0,0,0);
+}
+button,
+textarea , 
+input[type=checkbox] ,
+input[type=radio]{
+    border: 1px solid #555;
+    padding: 0.5em;
+    @include font-dpr(14px);
+    line-height: 1.2em;
+    width: 80%;
+    background: #fff;
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ccc));
+    -webkit-appearance: none;
+    box-shadow: 1px 1px 1px #fff;
+    border-radius: px2rem(8px);
+}
+input[type=checkbox],
+input[type=radio] {
+   display: inline-block;
+   @include font-dpr(14px);
+   line-height: 1em;
+   margin: 0 0.25em 0 0;
+   padding: 0;
+   width: px2rem(30px);
+   height: px2rem(30px);
+   vertical-align: text-top;
+}
+input[type=radio] {
+    -webkit-border-radius: 50%; /* Make radios round */
+}
+select {
+    border: 1px solid #555;
+    -webkit-appearance: none;
+    padding-left:1em;
+    -webkit-box-shadow: 1px 1px 1px #fff;
+    -webkit-border-radius: 0.3em;
+    background: #fff url("data:image/NGf;base64,iVBORw0KGgoAAAANSUhEUgAAAx8AAABuCAIAAADJUDkLAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpGMERBRkQ4MzEwRkUxMUU2OUREM0U2RUEzMDRGNzVGQiIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpGMERBRkQ4NDEwRkUxMUU2OUREM0U2RUEzMDRGNzVGQiI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkYwREFGRDgxMTBGRTExRTY5REQzRTZFQTMwNEY3NUZCIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkYwREFGRDgyMTBGRTExRTY5REQzRTZFQTMwNEY3NUZCIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+v4jAXwAABU5JREFUeNrs3F9Lk20cwHF1hmLTyDoQVDyRhBQPEh4LCskOUkIQD8L3KHjuK8kXULZRgU63+We791w08nkot5Zc2Hbt8zmq4W7hOvryu37eg41GYwAAgEiGHAEAgLoCAOhSw24GAQBi1pUjAAASdveDJDeDAADqCgCgW9m7AgBS5mYQAKC3qSsAgJjcDAIAKbv71PFGBgBAXUWtK7MrAEBdRWTvCgBAXQEAdCt7VwBAyuxdAQCoKwAAdfWDvSsAAHUFANCtbLUDACmzdwUAoK4AANTVD/auAABiMrsCAFKWZdkd/0azKwCAmMyuAICU2bsCAOht6goAICY3gwBAyv7C+64cOgCgrmLWldkVAKCuIrJ3BQAQk9kVAJAyN4MAAD1eVw4dAFBXMevK7AoAUFcx68qhAwDqKmZdmV0BAOoqIm9kAACIyewKAEiZm0EAgB6vK4cOAKirmHVldgUAJCzLsjv+jbbaAQBiMrsCAFLmZhAAoLfZagcAUmZ2BQDQ43Xl0AEAdRWzrsyuAIB+rquhoaFbPLPNY82uAID+ratcLjc2Nvanzzw/P7+6umpZV2ZXAEDf1lW1Wi0UCqGxBgcHO3xgrVbL5/Ojo6PqCgBQVz/78uXL/v5+qKsO7wfD0+r1+vr6+tOnT1u9Bd7NIADQv66urr5+/frhw4darTY8/Jsuqn+3uLgYGivUWMu6MrsCABLWPnUeP368tbVVLBY/f/782ygKOXX//v2NjY0nT540Z103fsXsCgDoX/l8/vnz54VC4eDg4OjoaGRkpNUC1sXFxcOHDzc3N9+8eRO+VSqVWj1TXQEA/SvLskaj8fbt22KxeHJy0vxLwF8Dq16vj46OLi4uvn///sGDB9VqNXzS6plDjhUASFijrVBXoagePXq0tra2vLxcq9V+vewLn5yfn8/Pz+/s7MzNzYWfCf8NddUss1/ZuwIAEq+r9j8QOun4+HhhYeHVq1fFYvHjx48hm67/hDB8PeTX7OxsyK+XL1+WSqWzs7PLy8s2syt1BQD0dV0NfH+F1cjIyNLS0unp6d7e3k87Vblc7t27d+vr6yG5yuVyc3DV5mluBgGAxOuqEyGbxsfH//kulFZzAStUV5Zlq6urIa2mp6e/ffvWTKv2jzK7AgASr6sOfyy01MTExObm5qdPnw4PD8MnuVxuampqd3d3ZmamUqlUq9Vmb7V/lNkVAJB4XXWouU01Nzf3+vXrkFPlcnlycnJnZ2d5eTkU1fHx8cXFxW8HV2ZXAAD/dVjzQvDFixeFQuHk5OTZs2fb29vh81Kp1EyrTp6jrgCAxJvpTwNrYmIiBNbY2NjKykr4dyitSqVy48sabq4rhw4AcC3LslKpNDMzMzk5OT09HdKqXC6H5Aqft3qN+891ZXYFAKRdS7f4SpDP5y8vL0NaXd8Jml0BANxGqKhKpXLv3r1qtRoyq7nJ3uHgasDsCgBIPpVu963mhvv11zt/jroCALihrv7fSJ0PrgbcDAIAyXfSHT/E7AoAUFcxmV0BAOoqal2ZXQEA6ipmXTl0AEBdxawrsysAQF2pKwCALq2rIYcOABCR2RUAkDJb7QAAPV5XZlcAgLpSVwAAXVpXttoBANQVAIC6AgDoB/auAICUZVl2x7/R7AoAICazKwAgZd7IAADQ23XlZhAAICazKwAgZbbaAQB6m7oCAFBXAADdyt4VAJAyb2QAAOjtunIzCACgrgAAutWwIwAAEmbvCgBAXQEAqKsf7F0BAKgrAAB1BQDQD+xdAQAps3cFANDb1BUAQExuBgGAlP2F9105dABAXUX0rwADACr+tCHJLs2cAAAAAElFTkSuQmCC") no-repeat right center;
+    background-size: 100% 100%;
+}
+input[type=checkbox]:checked {
+    background:#05abe0 url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABj0lEQVRYR+2Wb1EDMRTEdxVQB+CAOgAUAAqgCqAKwAGggKIAUFBQAA4AB6BgmTeTMCFz+Xe9a78033qX3vtl32YTYsODG66PLcBaFJB0CeAmaPcdSXs2fgskHQJYBsW/AExJfo8OIGnqik8CgCOSL/73aC2QZEVt5Qbhx5/06wB4AnCckn5UAEm3AC6ijDklaVD/xuAtkHQO4D6q80zypCv0BgVImO4HwJ53/WgKONN9AAgdb/U6pc96wK3EguOB5KLmvJD0DmC/VvokgKRrAFfBh2YlCEkGeRYVz0rfAmBzkxAdMeu/nZW+1AJLqoNoRQuSs/BZR8z610nXV5nQGeoTwE4KIuF4m14lfTGIMquzMJkDeIxitkn6IoBNyPQ3tTGqpa8CcBBxpqeKN0nfAmDBYnt8t5AHxe3aO4qd4d4yAK8k7eLRPKrPgowfTHq74diuaR7VABk/zEna8dtrtAKYHyykfOb3lr7ahPGynB/8na639L0BXCvs0jFZRfqVAHo1O/GnJg8MWXirgFfgFxXimSGhEJqCAAAAAElFTkSuQmCC") center center no-repeat;
+}
+input[type=radio]:checked {
+    background:#05abe0 url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABoUlEQVRYR82XfVHDQBDF31MAOAAF4ICiAKqAOgAU0CoACaCAogDqABSABFCwzOtcQi5fl5LLHftPZpLJ7W+/94jMwsz6sROAme0DuARwCODEPWXDJ4A393wk+TXUsEEAZiaFtwAuAAiiT6R8DWBFUmC9EgQws3sAV6GDOr4vSa76/u0EcFY/OVf/Uf/2N4Vm3uWNVgAzU3xfBrh7KJjCckZSMJ40AFyiSbkgYoqUC8JL0DYAJdB5TM2Vs9Yk59WzPQAzU5Yr7lOK8kFGbqUOMKX1hc5nkjLUB3BZ/zGl6ZWzj4qqKD1gZtcA7hIB3JBUf/kNgZktXbdLwaAuKX0eQIr4F8ZpXizqAK8ATlOYD2BDcvbvALKHIHsSZi9DLR2pGtFBMZRytOKyBNtmQYphpJGskm8OI70xsymrwRtEDQ84AC2dIjyO3JTeAcyCC4mD0DYkiL1IEN9OeXglKxS68axwjPXEBsBip6W0avXIKVlOvS5PBu8FLiTqEeqUqpJQWORueU53gvEXk5o3lKAao31Xs4foV7NIidh6zKAQTAnwAwpJnCHHFPDxAAAAAElFTkSuQmCC") center center no-repeat;
+    background-size: 70% 70%;
+}
+input[type="date"]::before {
+    color: #999999;
+    content: attr(placeholder);
+}
+input[type="date"] {
+    color: #ffffff;
+}
+input[type="date"]:focus,
+input[type="date"]:valid {
+    color: #666666;
+}
+input[type="date"]:focus::before,
+input[type="date"]:valid::before {
+    content: "" !important;
+}
+//<input type="date" placeholder="Date" required>

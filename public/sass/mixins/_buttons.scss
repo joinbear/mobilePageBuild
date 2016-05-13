@@ -1,0 +1,65 @@
+@import '../placeholder/placeholder';
+// Button variants
+//
+// Easily pump out default styles, as well as :hover, :focus, :active,
+// and disabled options for all buttons
+
+@mixin button-variant($color, $background, $border) {
+  @include placeholder(color,$color);
+  @include placeholder(background-color,$background);
+  @include placeholder(border-color,$border);
+
+  &:focus,
+  &.focus {
+    @include placeholder(color,$color);
+    @include placeholder(background-color,darken($background, 10%));
+    @include placeholder(border-color,darken($border, 25%));
+  }
+  &:hover {
+    @include placeholder(color,$color);
+    @include placeholder(background-color,darken($background, 10%));
+    @include placeholder(border-color,darken($border, 12%));
+  }
+  &:active,
+  &.active{
+    @include placeholder(color,$color);
+    @include placeholder(background-color,darken($background, 10%));
+    @include placeholder(border-color,darken($border, 12%));
+    &:hover,
+    &:focus,
+    &.focus {
+      @include placeholder(color,$color);
+      @include placeholder(background-color,darken($background, 17%));
+      @include placeholder(border-color,darken($border, 25%));
+    }
+  }
+  &:active,
+  &.active{
+    @include placeholder(background-image,none);
+  }
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    &,
+    &:hover,
+    &:focus,
+    &.focus,
+    &:active,
+    &.active {
+      @include placeholder(background-color,$background);
+      @include placeholder(border-color,$border);
+    }
+  }
+  .badge {
+    @include placeholder(color,$background);
+    @include placeholder(background-color,$color);
+  }
+}
+
+// Button sizes
+@mixin button-size($padding-vertical, $padding-horizontal, $font-size, $line-height, $border-radius) {
+  @include placeholder(padding,$padding-vertical $padding-horizontal);
+  @include placeholder(font-size,$font-size);
+  @include placeholder(line-height,$line-height);
+  @include placeholder(border-radius,$border-radius);
+}

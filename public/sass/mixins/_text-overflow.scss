@@ -1,0 +1,11 @@
+@import '../placeholder/placeholder';
+// Text overflow
+// Requires inline-block or block for proper styling
+
+@mixin text-overflow() {
+
+	@include placeholder(overflow,hidden);
+	@include placeholder(text-overflow,ellipsis);
+	@include placeholder(white-space,nowrap);
+
+}

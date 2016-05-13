@@ -1,0 +1,28 @@
+@import '../placeholder/placeholder';
+
+$font-stack:
+  (group: yahei, id: light, font: ('微软雅黑'), weight: 200, style: normal),
+  (group: yahei, id: light-italic, font: ('微软雅黑'), weight: 200, style: italic),
+  (group: yahei, id: regular, font: ('微软雅黑'), weight: 400, style: normal),
+  (group: yahei, id: regular-italic, font: ('微软雅黑'), weight: 400, style: italic),
+  (group: yahei, id: bold, font: ('微软雅黑'), weight: 700, style: normal),
+  (group: yahei, id: bold-italic, font: ('微软雅黑'), weight: 400, style: italic),
+  (group: songti, id: light, font: ('宋体'), weight: 200, style: normal),
+  (group: songti, id: light-italic, font: ('宋体'), weight: 200, style: italic),
+  (group: songti, id: regular, font: ('宋体'), weight: 400, style: normal),
+  (group: songti, id: regular-italic, font: ('宋体'), weight: 400, style: italic),
+  (group: songti, id: bold, font: ('宋体'), weight: 700, style: normal),
+  (group: songti, id: bold-italic, font: ('宋体'), weight: 400, style: italic),
+  (group: code, id: regular, font: (monospace), weight: 400, style: normal),
+  (group: yen, id: regular, font: (san-serif), weight: 400, style: normal);
+
+// Breakpoint Mixin
+@mixin font($group, $id:regular){
+  @each $font in $font-stack{
+    @if($group == map-get($font, group) and $id == map-get($font, id)){
+      @include placeholder(font-family,map-get($font, font));
+      @include placeholder(font-weight,map-get($font, weight));
+      @include placeholder(font-style,map-get($font, style));
+    }
+  }
+}

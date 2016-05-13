@@ -1,0 +1,5 @@
+@import '../placeholder/placeholder';
+
+@mixin text-align($type: left) {
+  @include placeholder(text-align,$type);
+}
